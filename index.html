@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SUGUS</title>
+</head>
+
+<body style="background-color:black;">
+
+<audio hidden id="myAudio" controls>
+  <source src="ussr.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><br>
+
+<button onclick="enableAutoplay()" type="button"><p style="color:green;"><a href="http://10.7.38.101:8083/1.html" target="_blank">Mene sivulle</a></p></button>
+
+<script>
+var x = document.getElementById("myAudio");
+
+function enableAutoplay() { 
+  x.autoplay = true;
+  x.load();
+} 
+</script> 
+
+</body>
+</html>
