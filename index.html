@@ -1,20 +1,21 @@
-<audio id="audio1" src="dorime.mp3" autoplay loop></audio>
-
-$(function(){
-
-    var t;
-    $("body").mousemove(function(){
-
-        clearTimeout(t); //Clear restore volume function
-
-        //Mute
-        var audio = document.getElementById("audio1");
-        audio.volume=0.0;
-
-        //Time restore volume
-        t = setTimeout(function(){
-            var audio = document.getElementById("audio1");
-            audio.volume=1.0;
-        }, 200);
-    });
-});
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+</head>
+  
+<body>
+  
+    <!-- Audio element -->
+    <audio src=
+"dorime.mp3"
+        type="audio/mp3" muted class="vol" 
+        loop style="border: solid; width: 800px;">
+    </audio>
+  
+    <script>
