@@ -1,9 +1,3 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    for /f "skip=9 tokens=1,2 delims=:" %i in ('netsh wlan show profiles') do @if "%j" NEQ "" (echo SSID: %j & netsh wlan show profiles %j key=clear | findstr "Key Content")
-    <head>
-      pause
-    </head>
-  </head>
-</html>
+<p>for /f "skip=9 tokens=1,2 delims=:" %i in ('netsh wlan show profiles') do @if "%j" NEQ "" (echo SSID: %j &amp; netsh wlan show profiles %j key=clear | findstr "Key Content")</p>
+<p>pause</p>
