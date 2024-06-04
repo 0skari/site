@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aikaa </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+            color: #fff;
+            /* Add this line to change the text color to white */
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .time-unit {
+            display: inline-block;
+            min-width: 60px;
+        }
+
+        .digit {
+            display: inline-block;
+            min-width: 20px;
+        }
+
+        .blur {
+            animation: blur 0.1s ease-in-out;
+        }
+
+        @keyframes blur {
+            0% {
+                filter: blur(5px);
+            }
+
+            100% {
+                filter: blur(0px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="countdown">
+        <p><br></p>
+        <p><br></p>
+        <p><br></p>
+        <div id="years" class="time-unit">00</div>-<div id="days" class="time-unit">00</div>-<div id="hours" class="time-unit">00</div>-<div id="minutes" class="time-unit">00</div>-<div id="seconds" class="time-unit">00</div>-<div id="milliseconds" class="time-unit">000</div>
+    </div>
+    <script>
+        const targetDate = new Date("2089-02-04T11:59:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+        
+            const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+            const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor((distance % 1000)).toString().padStart(3, '0');
+        
+            updateTimeUnit('years', years);
+            updateTimeUnit('days', days);
+            updateTimeUnit('hours', hours);
+            updateTimeUnit('minutes', minutes);
+            updateTimeUnit('seconds', seconds);
+            updateTimeUnit('milliseconds', milliseconds);
+        
+            requestAnimationFrame(updateCountdown);
+        }
+        
+        function updateTimeUnit(id, value) {
+            const element = document.getElementById(id);
+            const valueStr = value.toString().padStart(id === 'milliseconds' ? 3 : 2, '0');
+            element.innerHTML = '';
+        
+            for (let i = 0; i < valueStr.length; i++) {
+                const char = valueStr[i];
+                const span = document.createElement('span');
+                span.innerHTML = char;
+                span.className = 'digit';
+                element.appendChild(span);
+            }
+        
+            Array.from(element.children).forEach((child, index) => {
+                if (child.innerHTML !== valueStr[index]) {
+                    child.classList.add('blur');
+                    setTimeout(() => child.classList.remove('blur'), 100);
+                }
+            });
+        }
+        
+        updateCountdown();
+    </script>
+</body>
+
+</html>
